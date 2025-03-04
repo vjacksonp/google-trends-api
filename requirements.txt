@@ -1,3 +1,4 @@
 flask
 pytrends
 gunicorn
+urllib3==1.26.15
