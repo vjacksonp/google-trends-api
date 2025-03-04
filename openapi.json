@@ -1,0 +1,67 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Google Trends API",
+    "description": "API para obtener datos de tendencias de Google Trends.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://google-trends-api-6rno.onrender.com"
+    }
+  ],
+  "paths": {
+    "/trends": {
+      "get": {
+        "operationId": "getTrends",
+        "summary": "Obtiene tendencias para una palabra clave y país",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "Palabra clave a buscar en Google Trends",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "geo",
+            "in": "query",
+            "description": "Código del país (por ejemplo, CL para Chile)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta exitosa con datos de tendencias",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": { "type": "string" },
+                    "trends": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "date": { "type": "string" },
+                          "chatgpt": { "type": "integer" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
